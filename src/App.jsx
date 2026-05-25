@@ -341,13 +341,13 @@ export default function App() {
   const experience = [
     {
       company: "B S Digital Technology",
-      role: "MERN Stack Intern",
+      role: "MERN Stack Developer",
       period: "May 2025 - June 2025",
       desc: "Enhanced full stack E-Commerce web applications, integrated secure JWT validations, and developed modular Express CRUD endpoints with Postman verification.",
     },
     {
       company: "Zager Digital Services",
-      role: "Full Stack Intern",
+      role: "Full Stack Developer",
       period: "Aug 2024 - Sep 2024",
       desc: "Fine-tuned responsive front-ends with React and Tailwind, optimized layout speeds across devices, and collaborated on clean API pipelines.",
     },
@@ -782,7 +782,7 @@ export default function App() {
           <div className="md:col-span-4 space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Experience</h2>
             <p className="text-sm leading-relaxed text-zinc-500">
-              My professional milestones in full stack development internships.
+              My professional milestones in full stack development and engineering.
             </p>
           </div>
 
