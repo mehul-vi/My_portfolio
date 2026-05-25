@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  --bg-primary: #FAF9F6;      /* Soft Warm White */
+  --bg-secondary: #FFFFFF;    /* Pure white for cards */
+  --text-primary: #111827;    /* Dark Slate */
+  --text-secondary: #4B5563;  /* Medium Gray */
+  --text-muted: #6B7280;     /* Light Gray */
+  --border-color: #E5E7EB;    /* Light Gray Border */
+  --accent-color: #0ea5e9;    /* Sky Blue */
+  --accent-glow: rgba(14, 165, 233, 0.15);
+  --card-shadow: 0 4px 20px -2px rgba(17, 24, 39, 0.05), 0 2px 8px -1px rgba(17, 24, 39, 0.02);
+  --card-hover-shadow: 0 20px 40px -15px rgba(17, 24, 39, 0.1), 0 10px 20px -10px rgba(17, 24, 39, 0.05);
+}
+
+.dark {
+  --bg-primary: #07090E;      /* Deep Space Black */
+  --bg-secondary: #0E131F;    /* Premium Navy/Black for cards */
+  --text-primary: #F3F4F6;    /* Light Gray text */
+  --text-secondary: #9CA3AF;  /* Muted Gray text */
+  --text-muted: #6B7280;     /* Darker Gray text */
+  --border-color: #1E293B;    /* Dark border color */
+  --accent-color: #38bdf8;    /* Electric Sky Blue */
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+  --card-hover-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 10px 20px -10px rgba(56, 189, 248, 0.15);
+}
+
+/* Custom base resets */
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+/* Theme helper utility classes */
+.bg-theme-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-theme-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.text-theme-primary {
+  color: var(--text-primary);
+}
+
+.text-theme-secondary {
+  color: var(--text-secondary);
+}
+
+.text-theme-muted {
+  color: var(--text-muted);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+.theme-transition {
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar styles - Hide scrollbars completely */
+html, body {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+}
+
+/* Custom premium elements */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.premium-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  border-radius: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover {
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--accent-color);
+  transform: translateY(-4px);
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Resume Print-Optimized Stylesheet */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #111827 !important;
+    font-size: 11pt !important;
+    font-family: serif !important;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  .print-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    page-break-after: avoid;
+  }
+  
+  a {
+    text-decoration: underline !important;
+    color: #111827 !important;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+}
