@@ -18,7 +18,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motio
 
 
 // Web3Forms Access Key. Register for free at https://web3forms.com/ to receive contact emails.
-const WEB3FORMS_ACCESS_KEY = "83a697e0-0a07-4875-a084-685bdb65afd5";
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "83a697e0-0a07-4875-a084-685bdb65afd5";
 
 export default function App() {
   const [typedText, setTypedText] = useState("");
