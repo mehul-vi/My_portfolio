@@ -353,6 +353,30 @@ export default function App() {
     },
   ];
 
+  const education = [
+    {
+      institution: "Chhatrapati Shivaji Institute of Technology",
+      degree: "B.Tech in Computer Science & Engineering",
+      period: "2022 - 2026",
+      location: "Durg, Chhattisgarh",
+      desc: "Specializing in Computer Science, full stack application architectures, generative AI integration workflows, and database aggregation optimizations."
+    },
+    {
+      institution: "Government Higher Secondary School",
+      degree: "Senior Secondary (Class 12)",
+      period: "2021 - 2022",
+      location: "Utai, Chhattisgarh",
+      desc: "Focused on Science and Mathematics stream with strong academic outcomes."
+    },
+    {
+      institution: "Government Higher Secondary School",
+      degree: "Secondary (Class 10)",
+      period: "2019 - 2020",
+      location: "Utai, Chhattisgarh",
+      desc: "General secondary education foundations."
+    }
+  ];
+
   // Animation Variants for Container Parent Elements
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -435,8 +459,8 @@ export default function App() {
             mehul.sahu
           </motion.a>
 
-          <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-zinc-400">
-            {["Work", "Overview", "Skills", "About", "Contact"].map((link) => (
+          <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-zinc-400 font-sans">
+            {["Work", "Overview", "Experience", "Education", "Skills", "Contact"].map((link) => (
               <motion.a
                 key={link}
                 href={`#${link.toLowerCase()}`}
@@ -750,7 +774,7 @@ export default function App() {
 
         {/* WORK EXPERIENCE SECTION */}
         <motion.section
-          id="about"
+          id="experience"
           className="grid md:grid-cols-12 gap-12 text-left mb-40 pt-16 border-t border-white/[0.05]"
           variants={containerVariants}
           initial="hidden"
@@ -784,6 +808,54 @@ export default function App() {
                 <p className="text-sm sm:text-base text-zinc-400 leading-relaxed pt-3 border-t border-zinc-900/50">
                   {item.desc}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* EDUCATION SECTION */}
+        <motion.section
+          id="education"
+          className="grid md:grid-cols-12 gap-12 text-left mb-40 pt-16 border-t border-white/[0.05]"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <div className="md:col-span-4 space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Education</h2>
+            <p className="text-sm leading-relaxed text-zinc-500">
+              My academic milestones and computational foundations.
+            </p>
+          </div>
+
+          <div className="md:col-span-8 space-y-6">
+            {education.map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={itemVariants}
+                whileHover={{ x: 4 }}
+                className="p-8 border border-zinc-900 bg-zinc-950/20 rounded-2xl space-y-4 transition-colors hover:border-zinc-800"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="text-base sm:text-lg font-bold text-white">{item.institution}</h3>
+                    <p className="text-sm text-zinc-400 font-medium">{item.degree}</p>
+                  </div>
+                  <div className="flex flex-col items-end gap-1.5 shrink-0">
+                    <span className="text-xs font-mono font-medium text-zinc-400 bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-800 shadow-inner">
+                      {item.period}
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-500 font-medium">
+                      {item.location}
+                    </span>
+                  </div>
+                </div>
+                {item.desc && (
+                  <p className="text-sm sm:text-base text-zinc-400 leading-relaxed pt-3 border-t border-zinc-900/50">
+                    {item.desc}
+                  </p>
+                )}
               </motion.div>
             ))}
           </div>
