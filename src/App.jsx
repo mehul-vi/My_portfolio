@@ -436,7 +436,7 @@ export default function App() {
           </motion.a>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-zinc-400">
-            {["Work", "Reviews", "Skills", "About", "Contact"].map((link) => (
+            {["Work", "Overview", "Skills", "About", "Contact"].map((link) => (
               <motion.a
                 key={link}
                 href={`#${link.toLowerCase()}`}
@@ -691,9 +691,9 @@ export default function App() {
           </div>
         </motion.section>
 
-        {/* INTERACTIVE PRODUCTION REVIEWS & LIVE AUDITS SECTION */}
+        {/* INTERACTIVE PROJECTS OVERVIEW SECTION */}
         <motion.section
-          id="reviews"
+          id="overview"
           className="space-y-12 mb-40 text-left pt-16 border-t border-white/[0.05]"
           variants={containerVariants}
           initial="hidden"
@@ -701,8 +701,8 @@ export default function App() {
           viewport={{ once: true, margin: "-100px" }}
         >
           <div className="space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Production Reviews & Audits</h2>
-            <p className="text-sm text-zinc-500">Live deployments audited for application latency, layout fidelity, and code security.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Projects Overview</h2>
+            <p className="text-sm text-zinc-500">Detailed summaries and verified diagnostic highlights of my live deployed applications.</p>
           </div>
 
           <div className="grid gap-12 pt-4">
@@ -714,12 +714,6 @@ export default function App() {
               >
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{rev.title}</h3>
-                  
-                  {/* Security/Performance Rating Badge */}
-                  <div className="bg-sky-500/10 text-sky-400 border border-sky-500/20 px-3 py-1 rounded-lg text-xs font-mono font-bold flex items-center gap-1">
-                    <Sparkles size={11} className="text-sky-400 shrink-0" />
-                    <span>Review Score: {rev.rating}</span>
-                  </div>
                 </div>
 
                 <p className="text-xs sm:text-sm leading-relaxed text-zinc-400 bg-zinc-950/40 p-4 border border-zinc-900 rounded-xl font-medium">
