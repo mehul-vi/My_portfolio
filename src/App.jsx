@@ -13,12 +13,55 @@ import {
   Copy,
   ArrowUpRight,
   Terminal,
+  Code,
+  Monitor,
+  Cpu,
+  Database,
+  Shield,
 } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 
 
-// Web3Forms Access Key. Register for free at https://web3forms.com/ to receive contact emails.
+// email acsses key
 const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "83a697e0-0a07-4875-a084-685bdb65afd5";
+
+// Pixel-Perfect Official SVG Technology Icons from Devicon CDN matching user screenshot
+// Structured Developer Stack Categories matching user request text list
+const skillCategoriesText = [
+  {
+    title: "Programming Languages",
+    desc: "Core computational foundations for writing high-performance application logic.",
+    skills: ["JavaScript", "Python", "Java", "C", "C++"]
+  },
+  {
+    title: "Frontend Development",
+    desc: "Structuring modular, state-driven, and highly responsive user experiences.",
+    skills: ["HTML", "CSS", "React.js", "Tailwind CSS", "Bootstrap"]
+  },
+  {
+    title: "Backend Engineering",
+    desc: "Constructing secure, scalable backend services, REST/Fast APIs, and MVC logic.",
+    skills: ["Node.js", "Express.js", "REST APIs", "Fast APIs", "MVC Architecture"]
+  },
+  {
+    title: "Database & Tools",
+    desc: "Ecosystem management, database schema design, containerization, and version pipelines.",
+    skills: ["MongoDB", "Docker", "Git", "GitHub", "Postman", "VS Code", "NPM"]
+  },
+  {
+    title: "AI, GenAI & Security",
+    desc: "Orchestrating smart models, prompt engineering, context-aware OCR, and secure JWT safeguards.",
+    skills: [
+      "OpenAI",
+      "Gemini AI",
+      "Prompt Engineering",
+      "LLM Integration",
+      "AI Integration",
+      "OCR Integration",
+      "JWT Authentication"
+    ]
+  }
+];
 
 export default function App() {
   const [typedText, setTypedText] = useState("");
@@ -29,8 +72,8 @@ export default function App() {
   const [isSending, setIsSending] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [activeProjectIdx, setActiveProjectIdx] = useState(0);
+  const [activeSkillCat, setActiveSkillCat] = useState(0);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
-  const [activeSkillCatIdx, setActiveSkillCatIdx] = useState(0);
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const springConfig = { stiffness: 400, damping: 28 };
@@ -254,6 +297,7 @@ export default function App() {
       tech: ["React", "Node.js", "Express", "MongoDB", "Python"],
       category: "ai",
       screenshot: "/lumen_review.png",
+      mobileScreenshot: "/lumen_mobile.png",
       url: "https://ai-expence-tracker-deploy-y7n7.vercel.app/login"
     },
     {
@@ -272,6 +316,7 @@ export default function App() {
       tech: ["React", "Tailwind CSS", "Gemini API", "Node.js", "Framer Motion"],
       category: "web",
       screenshot: "/genui_review.png",
+      mobileScreenshot: "/genui_mobile.png",
       url: "https://component-generator-ai-ashen.vercel.app/"
     },
   ];
@@ -309,37 +354,7 @@ export default function App() {
     }
   ];
 
-  const skillCategories = [
-    {
-      title: "AI & GenAI Ecosystem",
-      desc: "Specialized in integrating smart models and designing automated pipelines.",
-      skills: [
-        { name: "Gemini & OpenAI API", desc: "Integrating GPT and Gemini models for logic generation" },
-        { name: "LLM & OCR Integration", desc: "Building document analysis pipelines & context-aware systems" },
-        { name: "Prompt Engineering", desc: "Orchestrating prompt templates & response parsing structures" }
-      ]
-    },
-    {
-      title: "Full Stack Development",
-      desc: "Constructing responsive front-ends and scalable backend infrastructures.",
-      skills: [
-        { name: "React.js", desc: "Structuring modular state-driven interactive user interfaces" },
-        { name: "Node.js & Express", desc: "Architecting solid, modular RESTful CRUD backend services" },
-        { name: "MongoDB", desc: "Designing optimized database schemas & aggregation pipelines" },
-        { name: "Tailwind CSS", desc: "Styling visually stunning interfaces using utility classes" }
-      ]
-    },
-    {
-      title: "Programming & Tools",
-      desc: "Core computational foundations and industrial development tools.",
-      skills: [
-        { name: "JavaScript (ES6+)", desc: "Writing clean, asynchronous state-driven application logic" },
-        { name: "Python", desc: "Developing AI scripts, OCR processors, & automation workflows" },
-        { name: "Git & GitHub", desc: "Version control and collaborative workflow pipelines" },
-        { name: "Docker", desc: "Containerizing applications & managing isolated development ecosystems" }
-      ]
-    }
-  ];
+  // skillCategories data replaced by techSkills customized SVG grid showcase
 
   const hackathons = [
     {
@@ -415,9 +430,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0A0A0C] text-[#F4F4F5] font-sans antialiased selection:bg-white/10 overflow-x-clip relative">
 
-      {/* Deep Ambient Drifting Aurora Nebulas (Very Faint & Subtle for Minimalist Aesthetic) */}
+      {/* Deep Ambient Drifting Aurora Nebulas (Whitish / Silver Ambient Glow Effect) */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Electric Blue Nebula */}
+        {/* Silver Crystal Nebula */}
         <motion.div
           animate={{
             x: [0, 100, -50, 0],
@@ -430,9 +445,9 @@ export default function App() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-sky-500/[0.02] blur-[140px] rounded-full"
+          className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-white/[0.025] blur-[150px] rounded-full"
         />
-        {/* Velvet Indigo/Purple Nebula */}
+        {/* Subtle Pure White Nebula */}
         <motion.div
           animate={{
             x: [0, -60, 80, 0],
@@ -445,9 +460,9 @@ export default function App() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-1/2 left-1/4 w-[700px] h-[700px] bg-purple-600/[0.015] blur-[160px] rounded-full"
+          className="absolute top-1/2 left-1/4 w-[700px] h-[700px] bg-white/[0.018] blur-[170px] rounded-full"
         />
-        {/* Soft Gold/Sunset Amber Nebula */}
+        {/* Soft Moonstone Nebula */}
         <motion.div
           animate={{
             x: [0, 80, -90, 0],
@@ -459,7 +474,7 @@ export default function App() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-amber-500/[0.01] blur-[130px] rounded-full"
+          className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-white/[0.015] blur-[140px] rounded-full"
         />
       </div>
 
@@ -575,8 +590,8 @@ export default function App() {
         >
           {/* Section Header with Chevron Logo */}
           <div className="flex items-center gap-3.5">
-            <div className="p-2 border border-fuchsia-500/20 bg-fuchsia-500/5 rounded-xl shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-fuchsia-500">
+            <div className="p-2 border border-amber-500/20 bg-amber-500/5 rounded-xl shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-amber-500">
                 <path d="M6 4L14 12L6 20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M13 4L21 12L13 20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="opacity-60" />
               </svg>
@@ -604,7 +619,7 @@ export default function App() {
               </div>
 
               {/* Desktop Screen Image */}
-              <div className="w-full h-[calc(100%-2rem)] overflow-hidden bg-[#07090e] relative">
+              <div className="w-full h-[calc(100%-2rem)] overflow-hidden bg-[#07090e] relative flex items-center justify-center">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeProjectIdx}
@@ -614,14 +629,14 @@ export default function App() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full h-full object-cover select-none pointer-events-none"
+                    className="w-full h-full object-contain select-none pointer-events-none"
                   />
                 </AnimatePresence>
               </div>
             </div>
 
             {/* Overlapping Smartphone Device Mockup */}
-            <div className="absolute bottom-6 right-0 w-[140px] sm:w-[190px] aspect-[9/18.5] bg-zinc-950 border-[4px] border-zinc-800 rounded-[2.2rem] overflow-hidden shadow-2xl z-10 select-none shadow-black/60">
+            <div className="absolute bottom-4 right-[-8px] sm:bottom-6 sm:right-[-32px] md:right-[-48px] w-[115px] sm:w-[190px] aspect-[9/18.5] bg-zinc-950 border-[3px] sm:border-[4px] border-zinc-800 rounded-[1.6rem] sm:rounded-[2.2rem] overflow-hidden shadow-2xl z-10 select-none shadow-black/60">
               {/* Camera Notch */}
               <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-14 h-4 bg-zinc-900 rounded-full z-20 flex items-center justify-center border border-zinc-800/40">
                 <span className="w-1.5 h-1.5 rounded-full bg-zinc-800/60 block mr-1" />
@@ -629,17 +644,17 @@ export default function App() {
               </div>
 
               {/* Mobile Screen Image */}
-              <div className="w-full h-full overflow-hidden bg-zinc-900 relative">
+              <div className="w-full h-full overflow-hidden bg-[#07090e] relative flex items-center justify-center">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeProjectIdx}
-                    src={projects[activeProjectIdx].screenshot}
+                    src={projects[activeProjectIdx].mobileScreenshot || projects[activeProjectIdx].screenshot}
                     alt={`${projects[activeProjectIdx].title} Mobile preview`}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full h-full object-cover object-left"
+                    className="w-full h-full object-cover object-top select-none pointer-events-none"
                   />
                 </AnimatePresence>
               </div>
@@ -649,7 +664,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setActiveProjectIdx((prev) => (prev + 1) % projects.length)}
-              className="absolute right-[-20px] sm:right-[-40px] top-[45%] w-10 h-10 rounded-full border border-zinc-800 bg-zinc-950/90 text-zinc-400 hover:text-white hover:border-zinc-700 flex items-center justify-center shadow-lg transition-all cursor-pointer hover:scale-105 z-20"
+              className="absolute right-[-24px] sm:right-[-52px] md:right-[-76px] top-[45%] w-10 h-10 rounded-full border border-zinc-800 bg-zinc-950/90 text-zinc-400 hover:text-white hover:border-zinc-700 flex items-center justify-center shadow-lg transition-all cursor-pointer hover:scale-105 z-20"
             >
               <ArrowRight size={16} />
             </button>
@@ -663,15 +678,15 @@ export default function App() {
                 key={idx}
                 onClick={() => setActiveProjectIdx(idx)}
                 className={`relative aspect-video w-[76px] rounded-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${activeProjectIdx === idx
-                    ? "border-fuchsia-500 shadow-[0_0_12px_rgba(217,70,239,0.4)] scale-105"
-                    : "border-zinc-800 hover:border-zinc-700 opacity-60 hover:opacity-90"
+                  ? "border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.4)] scale-105"
+                  : "border-zinc-800 hover:border-zinc-700 opacity-60 hover:opacity-90"
                   }`}
               >
                 {/* Micro preview screenshot */}
                 <img src={proj.screenshot} alt={`Thumb ${idx + 1}`} className="w-full h-full object-cover pointer-events-none select-none" />
 
                 {/* Number Overlay */}
-                <div className={`absolute inset-0 flex items-center justify-center text-[11px] font-mono font-extrabold ${activeProjectIdx === idx ? "bg-fuchsia-950/60 text-fuchsia-300" : "bg-black/60 text-zinc-400"
+                <div className={`absolute inset-0 flex items-center justify-center text-[11px] font-mono font-extrabold ${activeProjectIdx === idx ? "bg-amber-950/60 text-amber-300" : "bg-black/60 text-zinc-400"
                   }`}>
                   {idx + 1}
                 </div>
@@ -692,7 +707,7 @@ export default function App() {
               >
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="text-[11px] font-mono font-bold tracking-widest text-fuchsia-400 uppercase block">
+                    <span className="text-[11px] font-mono font-bold tracking-widest text-amber-400 uppercase block">
                       {projects[activeProjectIdx].subtitle}
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -899,11 +914,11 @@ export default function App() {
                 className="p-8 border border-zinc-900 bg-zinc-950/20 rounded-2xl space-y-6 transition-all duration-300 hover:border-zinc-800 relative group overflow-hidden"
               >
                 {/* Visual Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/0 via-transparent to-sky-500/0 group-hover:from-fuchsia-500/[0.02] group-hover:to-sky-500/[0.02] transition-all duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 via-transparent to-yellow-500/0 group-hover:from-amber-500/[0.02] group-hover:to-yellow-500/[0.02] transition-all duration-500 pointer-events-none" />
 
                 <div className="relative z-10 space-y-4">
                   <div className="space-y-1">
-                    <span className="text-[11px] font-mono font-bold tracking-widest text-fuchsia-400 uppercase block">
+                    <span className="text-[11px] font-mono font-bold tracking-widest text-amber-400 uppercase block">
                       {item.role}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-extrabold text-white">
@@ -913,7 +928,7 @@ export default function App() {
                       {item.organizer} <span className="text-zinc-500">in collaboration with</span> {item.collaboration}
                     </p>
                   </div>
-                  
+
                   <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
                     {item.desc}
                   </p>
@@ -935,10 +950,10 @@ export default function App() {
                       onClick={() => setSelectedCertificate(item.certificate)}
                       className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white text-xs font-mono px-4 py-2.5 rounded-xl transition-all cursor-pointer shadow-md select-none"
                     >
-                      <Sparkles size={12} className="text-fuchsia-400 animate-pulse" />
+                      <Sparkles size={12} className="text-amber-400 animate-pulse" />
                       <span>View Certificate of Participation</span>
                     </motion.button>
-                    
+
                     <span className="text-xs font-mono text-zinc-500 font-medium">
                       {item.date}
                     </span>
@@ -949,233 +964,284 @@ export default function App() {
           </div>
         </motion.section>
 
-        {/* CORE SKILLS SECTION WITH BIGGER CARDS */}
+        {/* STANDALONE CORE SKILLS SECTION - LUXURY SPLIT TAB INTERFACE */}
         <motion.section
           id="skills"
-          className="grid md:grid-cols-12 gap-12 text-left mb-40 pt-16 border-t border-white/[0.05]"
+          className="space-y-12 mb-40 pt-20 border-t border-white/[0.05]"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="md:col-span-4 space-y-4">
-            <div className="space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Capabilities</h2>
-              <p className="text-sm leading-relaxed text-zinc-500 font-medium">
-                My engineering stack, frameworks, computational foundations, and AI ecosystems elaborated.
-              </p>
+          {/* Section Header */}
+          <div className="flex items-center gap-3.5">
+            <div className="p-2 border border-amber-500/20 bg-amber-500/5 rounded-xl shrink-0">
+              <Sparkles className="text-amber-400 animate-pulse" size={24} />
             </div>
-
-            {/* Interactive Category Tabs List */}
-            <div className="flex flex-col gap-2.5 pt-4">
-              {skillCategories.map((category, catIdx) => (
-                <button
-                  type="button"
-                  key={catIdx}
-                  onClick={() => setActiveSkillCatIdx(catIdx)}
-                  className={`w-full text-left p-4 rounded-xl border font-sans font-semibold transition-all duration-300 cursor-pointer flex items-center justify-between group ${
-                    activeSkillCatIdx === catIdx
-                      ? "bg-white text-black border-white shadow-xl scale-[1.02]"
-                      : "bg-zinc-950/40 text-zinc-400 border-zinc-900 hover:border-zinc-800 hover:text-white"
-                  }`}
-                >
-                  <span className="text-sm tracking-wide">{category.title}</span>
-                  <div className={`p-1 rounded-lg shrink-0 ${activeSkillCatIdx === catIdx ? "bg-black/10" : "bg-zinc-900 group-hover:bg-zinc-850"}`}>
-                    <Sparkles size={12} className={activeSkillCatIdx === catIdx ? "text-black" : "text-sky-500"} />
-                  </div>
-                </button>
-              ))}
+            <div className="space-y-0.5 mt-0.5">
+              <h2 className="text-3xl font-extrabold text-white tracking-tight">Skills & Expertise</h2>
+              <p className="text-sm text-zinc-500 font-medium">A categorized dashboard of my technical ecosystem and modern software architectures.</p>
             </div>
           </div>
 
-          <div className="md:col-span-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSkillCatIdx}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="p-8 border border-zinc-900 bg-zinc-950/40 rounded-3xl space-y-6"
-              >
-                <div className="space-y-1">
-                  <h3 className="text-xl font-bold text-white flex items-center gap-2.5">
-                    <Sparkles size={18} className="text-sky-500 animate-pulse" />
-                    {skillCategories[activeSkillCatIdx].title}
-                  </h3>
-                  <p className="text-sm text-zinc-500 font-medium">{skillCategories[activeSkillCatIdx].desc}</p>
-                </div>
+          {/* Interactive Split-Panel Dashboard */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4">
+            {/* Left Category Selection Panel (Responsive Horizontal Tabs on Mobile) */}
+            <div className="md:col-span-4 flex flex-row md:flex-col overflow-x-auto no-scrollbar md:overflow-visible gap-2.5 pb-4 md:pb-0 snap-x">
+              {skillCategoriesText.map((cat, idx) => {
+                const IconComponent = [Code, Monitor, Cpu, Database, Shield][idx];
+                const isActive = activeSkillCat === idx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveSkillCat(idx)}
+                    className={`flex items-center gap-3.5 px-5 py-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 shrink-0 snap-start select-none w-auto md:w-full ${
+                      isActive
+                        ? "border-white/10 bg-white/[0.03] text-white shadow-[0_0_20px_rgba(255,255,255,0.02)]"
+                        : "border-zinc-900/40 bg-zinc-950/20 text-zinc-400 hover:text-zinc-200 hover:border-zinc-800"
+                    }`}
+                  >
+                    <div className={`p-2 rounded-xl transition-all ${
+                      isActive ? "bg-white/10 text-white" : "bg-zinc-900/50 text-zinc-500"
+                    }`}>
+                      <IconComponent size={18} />
+                    </div>
+                    <span className="text-sm font-semibold tracking-tight">{cat.title}</span>
+                  </button>
+                );
+              })}
+            </div>
 
-                <div className="grid sm:grid-cols-2 gap-4 pt-2">
-                  {skillCategories[activeSkillCatIdx].skills.map((skill, idx) => (
-                    <motion.div
-                      key={idx}
-                      whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.08)" }}
-                      className="p-5 border border-zinc-900 bg-zinc-950/60 rounded-2xl flex flex-col justify-between text-left transition-all hover:bg-zinc-900/40"
-                    >
-                      <span className="text-base font-bold text-zinc-200">{skill.name}</span>
-                      <span className="text-xs sm:text-sm text-zinc-500 mt-2.5 leading-relaxed font-medium">{skill.desc}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            {/* Right Active Skills Showcase Area */}
+            <div className="md:col-span-8 p-8 border border-zinc-900 bg-zinc-950/20 rounded-3xl space-y-6 relative overflow-hidden flex flex-col justify-between min-h-[300px]">
+              {/* Active Category Header */}
+              <div className="space-y-2 pb-6 border-b border-zinc-900/60 text-left">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-amber-500/80 uppercase block">
+                  Category Showcase
+                </span>
+                <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-2.5">
+                  {skillCategoriesText[activeSkillCat].title}
+                </h3>
+                <p className="text-sm text-zinc-400 leading-relaxed max-w-xl">
+                  {skillCategoriesText[activeSkillCat].desc}
+                </p>
+              </div>
+
+              {/* Skills Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
+                <AnimatePresence mode="wait">
+                  {skillCategoriesText[activeSkillCat].skills.map((skill, sIdx) => {
+                    // Premium Subtitle Categories
+                    const subtitle = [
+                      "Core Computational",
+                      "UI Frameworks",
+                      "Server Architectures",
+                      "Infrastructure",
+                      "Intelligent Systems"
+                    ][activeSkillCat];
+
+                    return (
+                      <motion.div
+                        key={`${activeSkillCat}-${skill}`}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.25, delay: sIdx * 0.04 }}
+                        className="p-5 bg-white/[0.012] border border-white/[0.03] rounded-2xl flex flex-col justify-between hover:bg-white/[0.025] hover:border-white/[0.08] transition-all duration-300 relative group text-left min-h-[90px] shadow-sm"
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="w-2 h-2 rounded-full bg-zinc-700 group-hover:bg-amber-400 group-hover:shadow-[0_0_8px_rgba(245,158,11,0.6)] transition-all duration-300" />
+                          <span className="text-[9px] font-mono font-bold text-zinc-600 group-hover:text-zinc-500 uppercase tracking-widest transition-colors">
+                            Verified
+                          </span>
+                        </div>
+                        <div className="space-y-1 mt-4">
+                          <h4 className="font-mono text-xs sm:text-sm font-bold text-white tracking-tight leading-none pt-0.5">
+                            {skill}
+                          </h4>
+                          <span className="text-[10px] text-zinc-500 font-medium block">
+                            {subtitle}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </div>
+            </div>
           </div>
         </motion.section>
 
-        {/* REFINED CLEAN CONTACT VIEW WITH ANIMATED SUBMIT */}
+        {/* STANDALONE CORE CONTACT SECTION */}
         <motion.section
           id="contact"
-          className="border border-zinc-900 bg-zinc-950/40 rounded-3xl overflow-hidden pt-16 border-t border-white/[0.05]"
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          className="space-y-12 mb-40 pt-20 border-t border-white/[0.05]"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="grid md:grid-cols-12 gap-10 p-8 md:p-12 items-start">
-            <div className="md:col-span-5 text-left space-y-4">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Let's Connect.</h3>
-              <p className="text-sm leading-relaxed text-zinc-400">
-                Have an opening, a role, or a project idea? Feel free to reach out directly or copy my targets below.
-              </p>
-
-              <div className="pt-4 flex flex-col gap-3">
-                <motion.button
-                  onClick={copyEmail}
-                  className="px-5 py-3.5 rounded-xl border border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:text-white text-sm font-semibold flex items-center gap-3 justify-center transition-colors relative cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Mail size={15} />
-                  <span>Copy Email Address</span>
-                  <AnimatePresence>
-                    {copiedEmail && (
-                      <motion.span
-                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                        className="absolute -top-10 px-3 py-1.5 bg-zinc-800 text-white text-xs font-semibold rounded-lg border border-zinc-700 shadow-xl whitespace-nowrap"
-                      >
-                        Copied!
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
-
-                <motion.button
-                  onClick={copyPhone}
-                  className="px-5 py-3.5 rounded-xl border border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:text-white text-sm font-semibold flex items-center gap-3 justify-center transition-colors relative cursor-pointer"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Phone size={15} />
-                  <span>Copy Phone Metric</span>
-                  <AnimatePresence>
-                    {copiedPhone && (
-                      <motion.span
-                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                        className="absolute -top-10 px-3 py-1.5 bg-zinc-800 text-white text-xs font-semibold rounded-lg border border-zinc-700 shadow-xl whitespace-nowrap"
-                      >
-                        Copied!
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
-              </div>
+          {/* Section Header */}
+          <div className="flex items-center gap-3.5">
+            <div className="p-2 border border-amber-500/20 bg-amber-500/5 rounded-xl shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-amber-500">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </div>
+            <div className="space-y-0.5 mt-0.5">
+              <h2 className="text-3xl font-extrabold text-white tracking-tight">Contact</h2>
+              <p className="text-sm text-zinc-500 font-medium">Get in touch directly or drop a message below.</p>
+            </div>
+          </div>
 
-            <div className="md:col-span-7 w-full">
-              <AnimatePresence mode="wait">
-                {!formSubmitted ? (
-                  <motion.form
-                    key="form"
-                    onSubmit={handleFormSubmit}
-                    className="space-y-4"
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+          {/* Contact Content Card Layout */}
+          <div className="border border-zinc-900 bg-zinc-950/20 rounded-3xl overflow-hidden">
+            <div className="grid md:grid-cols-12 gap-10 p-8 md:p-12 items-start">
+              <div className="md:col-span-5 text-left space-y-4">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Let's Connect.</h3>
+                <p className="text-sm leading-relaxed text-zinc-400">
+                  Have an opening, a role, or a project idea? Feel free to reach out directly or copy my targets below.
+                </p>
+
+                <div className="pt-4 flex flex-col gap-3">
+                  <motion.button
+                    onClick={copyEmail}
+                    className="px-5 py-3.5 rounded-xl border border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:text-white text-sm font-semibold flex items-center gap-3 justify-center transition-colors relative cursor-pointer"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <input
-                        type="text" required value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-xl border border-zinc-900 bg-zinc-950 text-sm text-white focus:outline-none focus:border-zinc-700 transition-colors"
-                        placeholder="Your Name"
-                      />
-                      <input
-                        type="email" required value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-xl border border-zinc-900 bg-zinc-950 text-sm text-white focus:outline-none focus:border-zinc-700 transition-colors"
-                        placeholder="Your Email"
-                      />
-                    </div>
-                    <textarea
-                      required rows={4} value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl border border-zinc-900 bg-zinc-950 text-sm text-white focus:outline-none focus:border-zinc-700 transition-colors resize-none"
-                      placeholder="Your Message..."
-                    />
-                    {submitError && (
-                      <div className="text-rose-500 text-xs font-semibold font-mono bg-rose-500/10 border border-rose-500/20 p-3.5 rounded-xl text-left">
-                        {submitError}
-                      </div>
-                    )}
-                    <motion.button
-                      type="submit"
-                      disabled={isSending}
-                      className={`w-full py-4 bg-white hover:bg-zinc-200 text-black text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xl ${isSending ? "opacity-50 cursor-not-allowed" : ""}`}
-                      whileHover={isSending ? {} : { scale: 1.02 }}
-                      whileTap={isSending ? {} : { scale: 0.98 }}
-                    >
-                      {isSending ? (
-                        <>
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          <span>Sending Message...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>Send Message</span>
-                          <Send size={14} />
-                        </>
+                    <Mail size={15} />
+                    <span>Copy Email Address</span>
+                    <AnimatePresence>
+                      {copiedEmail && (
+                        <motion.span
+                          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                          className="absolute -top-10 px-3 py-1.5 bg-zinc-800 text-white text-xs font-semibold rounded-lg border border-zinc-700 shadow-xl whitespace-nowrap"
+                        >
+                          Copied!
+                        </motion.span>
                       )}
-                    </motion.button>
-                  </motion.form>
-                ) : (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-10 text-center space-y-4"
-                  >
-                    <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 text-white flex items-center justify-center mx-auto rounded-full shadow-lg">
-                      <Check size={16} />
-                    </div>
-                    <div className="space-y-1">
-                      <h4 className="font-bold text-white text-base">Message Sent Successfully</h4>
-                      <p className="text-zinc-500 text-sm">Thank you! I will review this and respond shortly.</p>
-                    </div>
+                    </AnimatePresence>
+                  </motion.button>
 
-                    {/* Notice to guide the user how to configure their real access key */}
-                    {(!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.includes("YOUR_ACCESS_KEY_HERE")) && (
-                      <div className="text-[11px] font-mono text-amber-500/70 border border-amber-500/20 bg-amber-500/5 p-4 rounded-xl max-w-sm mx-auto mt-6 leading-relaxed text-left space-y-2">
-                        <div className="font-bold text-amber-400">💡 Configure Real Email Alerts</div>
-                        <div>
-                          This form is currently running in <strong>Demo Mode</strong>. To receive actual contact messages directly in your email inbox:
-                        </div>
-                        <ol className="list-decimal pl-4 space-y-1">
-                          <li>Get a free access key at <a href="https://web3forms.com/" target="_blank" rel="noreferrer" className="underline hover:text-amber-300 font-semibold">web3forms.com</a>.</li>
-                          <li>Open <code className="text-amber-400">src/App.jsx</code>.</li>
-                          <li>Replace the placeholder access key on line 21 with your new key.</li>
-                        </ol>
+                  <motion.button
+                    onClick={copyPhone}
+                    className="px-5 py-3.5 rounded-xl border border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:text-white text-sm font-semibold flex items-center gap-3 justify-center transition-colors relative cursor-pointer"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Phone size={15} />
+                    <span>Copy Phone Metric</span>
+                    <AnimatePresence>
+                      {copiedPhone && (
+                        <motion.span
+                          initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.9 }}
+                          className="absolute -top-10 px-3 py-1.5 bg-zinc-800 text-white text-xs font-semibold rounded-lg border border-zinc-700 shadow-xl whitespace-nowrap"
+                        >
+                          Copied!
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+                </div>
+              </div>
+
+              <div className="md:col-span-7 w-full">
+                <AnimatePresence mode="wait">
+                  {!formSubmitted ? (
+                    <motion.form
+                      key="form"
+                      onSubmit={handleFormSubmit}
+                      className="space-y-4"
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <input
+                          type="text" required value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full px-4 py-3.5 rounded-xl border border-zinc-900 bg-zinc-950 text-sm text-white focus:outline-none focus:border-zinc-700 transition-colors"
+                          placeholder="Your Name"
+                        />
+                        <input
+                          type="email" required value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full px-4 py-3.5 rounded-xl border border-zinc-900 bg-zinc-950 text-sm text-white focus:outline-none focus:border-zinc-700 transition-colors"
+                          placeholder="Your Email"
+                        />
                       </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      <textarea
+                        required rows={4} value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full px-4 py-3.5 rounded-xl border border-zinc-900 bg-zinc-950 text-sm text-white focus:outline-none focus:border-zinc-700 transition-colors resize-none"
+                        placeholder="Your Message..."
+                      />
+                      {submitError && (
+                        <div className="text-rose-500 text-xs font-semibold font-mono bg-rose-500/10 border border-rose-500/20 p-3.5 rounded-xl text-left">
+                          {submitError}
+                        </div>
+                      )}
+                      <motion.button
+                        type="submit"
+                        disabled={isSending}
+                        className={`w-full py-4 bg-white hover:bg-zinc-200 text-black text-sm font-bold rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xl ${isSending ? "opacity-50 cursor-not-allowed" : ""}`}
+                        whileHover={isSending ? {} : { scale: 1.02 }}
+                        whileTap={isSending ? {} : { scale: 0.98 }}
+                      >
+                        {isSending ? (
+                          <>
+                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span>Sending Message...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Send Message</span>
+                            <Send size={14} />
+                          </>
+                        )}
+                      </motion.button>
+                    </motion.form>
+                  ) : (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="py-10 text-center space-y-4"
+                    >
+                      <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 text-white flex items-center justify-center mx-auto rounded-full shadow-lg">
+                        <Check size={16} />
+                      </div>
+                      <div className="space-y-1">
+                        <h4 className="font-bold text-white text-base">Message Sent Successfully</h4>
+                        <p className="text-zinc-500 text-sm">Thank you! I will review this and respond shortly.</p>
+                      </div>
+
+                      {/* Notice to guide the user how to configure their real access key */}
+                      {(!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.includes("YOUR_ACCESS_KEY_HERE")) && (
+                        <div className="text-[11px] font-mono text-amber-500/70 border border-amber-500/20 bg-amber-500/5 p-4 rounded-xl max-w-sm mx-auto mt-6 leading-relaxed text-left space-y-2">
+                          <div className="font-bold text-amber-400">💡 Configure Real Email Alerts</div>
+                          <div>
+                            This form is currently running in <strong>Demo Mode</strong>. To receive actual contact messages directly in your email inbox:
+                          </div>
+                          <ol className="list-decimal pl-4 space-y-1">
+                            <li>Get a free access key at <a href="https://web3forms.com/" target="_blank" rel="noreferrer" className="underline hover:text-amber-300 font-semibold">web3forms.com</a>.</li>
+                            <li>Open <code className="text-amber-400">src/App.jsx</code>.</li>
+                            <li>Replace the placeholder access key on line 21 with your new key.</li>
+                          </ol>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </motion.section>
@@ -1183,12 +1249,11 @@ export default function App() {
 
       {/* CORE STANDARD FOOTER */}
       <footer className="border-t border-white/[0.05] py-10 px-6 text-sm text-zinc-600">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="font-medium">© {new Date().getFullYear()} Mehul Sahu. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <motion.a whileHover={{ y: -3 }} href="https://github.com/mehul-vi" target="_blank" rel="noreferrer" className="hover:text-white transition-colors"><Github size={16} /></motion.a>
-            <motion.a whileHover={{ y: -3 }} href="https://linkedin.com/in/mehul-kumar-sahu" target="_blank" rel="noreferrer" className="hover:text-white transition-colors"><Linkedin size={16} /></motion.a>
-            <motion.a whileHover={{ y: -3 }} href="mailto:mehulkumars315@gmail.com" className="hover:text-white transition-colors"><Mail size={16} /></motion.a>
+        <div className="max-w-4xl mx-auto flex items-center justify-center">
+          <div className="flex items-center gap-8">
+            <motion.a whileHover={{ y: -3 }} href="https://github.com/mehul-vi" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-white transition-colors"><Github size={18} /></motion.a>
+            <motion.a whileHover={{ y: -3 }} href="https://linkedin.com/in/mehul-kumar-sahu" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-white transition-colors"><Linkedin size={18} /></motion.a>
+            <motion.a whileHover={{ y: -3 }} href="mailto:mehulkumars315@gmail.com" className="text-zinc-500 hover:text-white transition-colors"><Mail size={18} /></motion.a>
           </div>
         </div>
       </footer>
@@ -1247,11 +1312,11 @@ export default function App() {
         </div>
       </div>
 
-      {/* Dynamic Ambient Spotlight Cursor Follower */}
+      {/* Dynamic Ambient Spotlight Cursor Follower (Soft Whitish Glow) */}
       <motion.div
         className="hidden md:block pointer-events-none fixed inset-0 z-30"
         style={{
-          background: useMotionTemplate`radial-gradient(650px circle at ${cursorX}px ${cursorY}px, rgba(56, 189, 248, 0.045) 0%, rgba(217, 70, 239, 0.02) 45%, transparent 80%)`
+          background: useMotionTemplate`radial-gradient(650px circle at ${cursorX}px ${cursorY}px, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.012) 45%, transparent 80%)`
         }}
       />
 
