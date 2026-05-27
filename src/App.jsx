@@ -29,6 +29,8 @@ export default function App() {
   const [isSending, setIsSending] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [activeProjectIdx, setActiveProjectIdx] = useState(0);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [activeSkillCatIdx, setActiveSkillCatIdx] = useState(0);
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const springConfig = { stiffness: 400, damping: 28 };
@@ -333,8 +335,22 @@ export default function App() {
       skills: [
         { name: "JavaScript (ES6+)", desc: "Writing clean, asynchronous state-driven application logic" },
         { name: "Python", desc: "Developing AI scripts, OCR processors, & automation workflows" },
-        { name: "Git & GitHub", desc: "Version control and collaborative workflow pipelines" }
+        { name: "Git & GitHub", desc: "Version control and collaborative workflow pipelines" },
+        { name: "Docker", desc: "Containerizing applications & managing isolated development ecosystems" }
       ]
+    }
+  ];
+
+  const hackathons = [
+    {
+      title: "Hack-a-Sol 4.0",
+      organizer: "IIIT Naya Raipur",
+      collaboration: "GDG Raipur",
+      date: "November 14 - 15, 2025",
+      role: "Participant",
+      desc: "An intense 36-hour hackathon where we designed and engineered high-performance, real-world solutions under tight timelines. Collaborated closely with teammates to implement modern software architectures and pitched directly to experienced judges from GDG Raipur and IIIT Naya Raipur.",
+      tech: ["React.js", "Node.js", "Express", "API Integration", "Tailwind CSS"],
+      certificate: "/hackasol_certificate.jpg"
     }
   ];
 
@@ -460,7 +476,7 @@ export default function App() {
           </motion.a>
 
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-zinc-400 font-sans">
-            {["Work", "Overview", "Experience", "Education", "Skills", "Contact"].map((link) => (
+            {["Work", "Overview", "Experience", "Education", "Hackathons", "Skills", "Contact"].map((link) => (
               <motion.a
                 key={link}
                 href={`#${link.toLowerCase()}`}
@@ -859,6 +875,80 @@ export default function App() {
           </div>
         </motion.section>
 
+        {/* HACKATHONS SECTION */}
+        <motion.section
+          id="hackathons"
+          className="grid md:grid-cols-12 gap-12 text-left mb-40 pt-16 border-t border-white/[0.05]"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <div className="md:col-span-4 space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Hackathons</h2>
+            <p className="text-sm leading-relaxed text-zinc-500">
+              Competitive development arenas where I build, collaborate, and innovate under intense pressure.
+            </p>
+          </div>
+
+          <div className="md:col-span-8 space-y-6">
+            {hackathons.map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={itemVariants}
+                className="p-8 border border-zinc-900 bg-zinc-950/20 rounded-2xl space-y-6 transition-all duration-300 hover:border-zinc-800 relative group overflow-hidden"
+              >
+                {/* Visual Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500/0 via-transparent to-sky-500/0 group-hover:from-fuchsia-500/[0.02] group-hover:to-sky-500/[0.02] transition-all duration-500 pointer-events-none" />
+
+                <div className="relative z-10 space-y-4">
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-mono font-bold tracking-widest text-fuchsia-400 uppercase block">
+                      {item.role}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-zinc-300 font-medium">
+                      {item.organizer} <span className="text-zinc-500">in collaboration with</span> {item.collaboration}
+                    </p>
+                  </div>
+                  
+                  <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
+                    {item.desc}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {item.tech.map((t, index) => (
+                      <span key={index} className="text-xs bg-zinc-900 text-zinc-300 px-3 py-1.5 rounded-lg border border-zinc-800/60 font-mono">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Clean Click option to View Certificate */}
+                  <div className="pt-4 border-t border-zinc-900/50 flex flex-wrap items-center justify-between gap-4 mt-2">
+                    <motion.button
+                      type="button"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setSelectedCertificate(item.certificate)}
+                      className="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white text-xs font-mono px-4 py-2.5 rounded-xl transition-all cursor-pointer shadow-md select-none"
+                    >
+                      <Sparkles size={12} className="text-fuchsia-400 animate-pulse" />
+                      <span>View Certificate of Participation</span>
+                    </motion.button>
+                    
+                    <span className="text-xs font-mono text-zinc-500 font-medium">
+                      {item.date}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
         {/* CORE SKILLS SECTION WITH BIGGER CARDS */}
         <motion.section
           id="skills"
@@ -868,42 +958,68 @@ export default function App() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="md:col-span-4 space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Capabilities</h2>
-            <p className="text-sm leading-relaxed text-zinc-500">
-              My engineering stack, frameworks, computational foundations, and AI ecosystems elaborated.
-            </p>
+          <div className="md:col-span-4 space-y-4">
+            <div className="space-y-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Capabilities</h2>
+              <p className="text-sm leading-relaxed text-zinc-500 font-medium">
+                My engineering stack, frameworks, computational foundations, and AI ecosystems elaborated.
+              </p>
+            </div>
+
+            {/* Interactive Category Tabs List */}
+            <div className="flex flex-col gap-2.5 pt-4">
+              {skillCategories.map((category, catIdx) => (
+                <button
+                  type="button"
+                  key={catIdx}
+                  onClick={() => setActiveSkillCatIdx(catIdx)}
+                  className={`w-full text-left p-4 rounded-xl border font-sans font-semibold transition-all duration-300 cursor-pointer flex items-center justify-between group ${
+                    activeSkillCatIdx === catIdx
+                      ? "bg-white text-black border-white shadow-xl scale-[1.02]"
+                      : "bg-zinc-950/40 text-zinc-400 border-zinc-900 hover:border-zinc-800 hover:text-white"
+                  }`}
+                >
+                  <span className="text-sm tracking-wide">{category.title}</span>
+                  <div className={`p-1 rounded-lg shrink-0 ${activeSkillCatIdx === catIdx ? "bg-black/10" : "bg-zinc-900 group-hover:bg-zinc-850"}`}>
+                    <Sparkles size={12} className={activeSkillCatIdx === catIdx ? "text-black" : "text-sky-500"} />
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="md:col-span-8 space-y-8">
-            {skillCategories.map((category, catIdx) => (
+          <div className="md:col-span-8">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={catIdx}
-                variants={itemVariants}
-                className="p-8 border border-zinc-900 bg-zinc-950/40 rounded-2xl space-y-6"
+                key={activeSkillCatIdx}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+                className="p-8 border border-zinc-900 bg-zinc-950/40 rounded-3xl space-y-6"
               >
                 <div className="space-y-1">
-                  <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    <Sparkles size={16} className="text-sky-500 animate-pulse" />
-                    {category.title}
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2.5">
+                    <Sparkles size={18} className="text-sky-500 animate-pulse" />
+                    {skillCategories[activeSkillCatIdx].title}
                   </h3>
-                  <p className="text-xs text-zinc-500">{category.desc}</p>
+                  <p className="text-sm text-zinc-500 font-medium">{skillCategories[activeSkillCatIdx].desc}</p>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {category.skills.map((skill, idx) => (
+                <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                  {skillCategories[activeSkillCatIdx].skills.map((skill, idx) => (
                     <motion.div
                       key={idx}
                       whileHover={{ scale: 1.02, borderColor: "rgba(255,255,255,0.08)" }}
-                      className="p-4 border border-zinc-900 bg-zinc-950/60 rounded-xl flex flex-col justify-between text-left transition-colors"
+                      className="p-5 border border-zinc-900 bg-zinc-950/60 rounded-2xl flex flex-col justify-between text-left transition-all hover:bg-zinc-900/40"
                     >
-                      <span className="text-sm font-semibold text-zinc-200">{skill.name}</span>
-                      <span className="text-xs text-zinc-500 mt-2 leading-relaxed">{skill.desc}</span>
+                      <span className="text-base font-bold text-zinc-200">{skill.name}</span>
+                      <span className="text-xs sm:text-sm text-zinc-500 mt-2.5 leading-relaxed font-medium">{skill.desc}</span>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
-            ))}
+            </AnimatePresence>
           </div>
         </motion.section>
 
@@ -1138,6 +1254,49 @@ export default function App() {
           background: useMotionTemplate`radial-gradient(650px circle at ${cursorX}px ${cursorY}px, rgba(56, 189, 248, 0.045) 0%, rgba(217, 70, 239, 0.02) 45%, transparent 80%)`
         }}
       />
+
+      {/* Lightbox Certificate Zoom Modal */}
+      <AnimatePresence>
+        {selectedCertificate && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4 sm:p-8"
+            onClick={() => setSelectedCertificate(null)}
+          >
+            {/* Close Button Top Right */}
+            <motion.button
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center cursor-pointer hover:border-zinc-700 shadow-xl transition-all"
+              onClick={() => setSelectedCertificate(null)}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </motion.button>
+
+            {/* Modal Body Card */}
+            <motion.div
+              initial={{ scale: 0.95, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 20, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 220 }}
+              className="relative max-w-4xl w-full aspect-[4/3] sm:aspect-[1.414] rounded-2xl overflow-hidden border border-white/10 bg-zinc-950/80 shadow-2xl flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedCertificate}
+                alt="Hackathon Certificate Full View"
+                className="w-full h-full object-contain pointer-events-none select-none"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
