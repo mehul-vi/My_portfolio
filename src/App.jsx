@@ -298,7 +298,7 @@ export default function App() {
       category: "ai",
       screenshot: "/lumen_review.png",
       mobileScreenshot: "/lumen_mobile.png",
-      url: "https://ai-expence-tracker-deploy-y7n7.vercel.app/login"
+      url: "https://lumen-green-one.vercel.app/login"
     },
     {
       title: "AI Code Reviewer",
