@@ -324,8 +324,8 @@ export default function App() {
   const reviews = [
     {
       title: "Lumen — Finance Tracker",
-      url: "https://ai-expence-tracker-deploy-y7n7.vercel.app/login",
-      shortUrl: "ai-expence-tracker-deploy-y7n7.vercel.app/login",
+      url: "https://lumen-green-one.vercel.app/login",
+      shortUrl: "https://lumen-green-one.vercel.app/login",
       screenshot: "/lumen_review.png",
       rating: "9.8",
       highlights: ["AI Budget Forecasting", "OCR Receipt Processing", "Real-Time Cash Analytics"],
@@ -333,9 +333,9 @@ export default function App() {
       auditNotes: "Highly secure JWT-validated architecture with optimized Python OCR service pipelines. Passed rigorous performance stress tests with outstanding MERN indexing latency."
     },
     {
-      title: "GenUI — AI Component Generator",
-      url: "https://component-generator-ai-ashen.vercel.app/",
-      shortUrl: "component-generator-ai-ashen.vercel.app",
+      title: "CodeGen — AI Component Generator",
+      url: "https://codegen-khaki.vercel.app/",
+      shortUrl: "https://codegen-khaki.vercel.app/",
       screenshot: "/genui_review.png",
       rating: "9.7",
       highlights: ["Gemini Prompt Compiles", "Live Tailwind Sandbox", "Direct Code Exports"],
@@ -995,15 +995,13 @@ export default function App() {
                   <button
                     key={idx}
                     onClick={() => setActiveSkillCat(idx)}
-                    className={`flex items-center gap-3.5 px-5 py-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 shrink-0 snap-start select-none w-auto md:w-full ${
-                      isActive
-                        ? "border-white/10 bg-white/[0.03] text-white shadow-[0_0_20px_rgba(255,255,255,0.02)]"
-                        : "border-zinc-900/40 bg-zinc-950/20 text-zinc-400 hover:text-zinc-200 hover:border-zinc-800"
-                    }`}
+                    className={`flex items-center gap-3.5 px-5 py-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 shrink-0 snap-start select-none w-auto md:w-full ${isActive
+                      ? "border-white/10 bg-white/[0.03] text-white shadow-[0_0_20px_rgba(255,255,255,0.02)]"
+                      : "border-zinc-900/40 bg-zinc-950/20 text-zinc-400 hover:text-zinc-200 hover:border-zinc-800"
+                      }`}
                   >
-                    <div className={`p-2 rounded-xl transition-all ${
-                      isActive ? "bg-white/10 text-white" : "bg-zinc-900/50 text-zinc-500"
-                    }`}>
+                    <div className={`p-2 rounded-xl transition-all ${isActive ? "bg-white/10 text-white" : "bg-zinc-900/50 text-zinc-500"
+                      }`}>
                       <IconComponent size={18} />
                     </div>
                     <span className="text-sm font-semibold tracking-tight">{cat.title}</span>
