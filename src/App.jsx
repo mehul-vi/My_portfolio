@@ -324,8 +324,8 @@ export default function App() {
   const reviews = [
     {
       title: "Lumen — Finance Tracker",
-      url: "https://lumen-green-one.vercel.app/",
-      shortUrl: "https://lumen-green-one.vercel.app/",
+      url: "https://lumen-green-one.vercel.app/login",
+      shortUrl: "https://lumen-green-one.vercel.app/login",
       screenshot: "/lumen_review.png",
       rating: "9.8",
       highlights: ["AI Budget Forecasting", "OCR Receipt Processing", "Real-Time Cash Analytics"],
